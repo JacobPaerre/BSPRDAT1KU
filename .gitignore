@@ -31,5 +31,5 @@ bin
 *_REMOTE_*.txt
 
 .DS_Store
-
+.idea/
 # End of https://www.toptal.com/developers/gitignore/api/git,fsharp

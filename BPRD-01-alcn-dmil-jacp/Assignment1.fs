@@ -198,5 +198,6 @@ module Assignment1_exercise2 =
         *)
         | Let(list, ebody) ->
             let cenv1 = List.fold(fun acc (x, _) -> x :: acc) cenv list
-            TLet(tcomp _ cenv, tcomp ebody cenv1)
+            let erhs = snd list.Head
+            TLet(tcomp erhs cenv, tcomp ebody cenv1)
         | Prim(ope, e1, e2) -> TPrim(ope, tcomp e1 cenv, tcomp e2 cenv)
