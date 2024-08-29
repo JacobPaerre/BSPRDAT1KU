@@ -30,4 +30,6 @@ bin
 *_LOCAL_*.txt
 *_REMOTE_*.txt
 
+.DS_Store
+
 # End of https://www.toptal.com/developers/gitignore/api/git,fsharp
