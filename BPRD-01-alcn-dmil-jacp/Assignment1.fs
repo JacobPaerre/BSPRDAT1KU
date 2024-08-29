@@ -1,6 +1,6 @@
 ﻿namespace BPRD_01_alcn_dmil_jacp
 
-module Assignment1 =
+module Assignment1_exercise1 =
     
     type expr = 
       | CstI of int
@@ -109,3 +109,94 @@ module Assignment1 =
         | Add(e1, e2) -> Add((diff e1 v), (diff e2 v))
         | Sub(e1, e2) -> Sub((diff e1 v), (diff e2 v))
         | Mul(e1, e2) -> Add(Mul((diff e1 v), e2), Mul(e1, (diff e2 v)))
+
+module Assignment1_exercise2 =        
+    // Exercise 2.1 (i)
+    type expr = 
+      | CstI of int
+      | Var of string
+      | Let of (string * expr) list * expr // changed
+      | Prim of string * expr * expr
+      
+    let rec lookup env x =
+        match env with 
+        | []        -> failwith (x + " not found")
+        | (y, v)::r -> if x=y then v else lookup r x
+
+    let rec eval e (env : (string * int) list) : int =
+        match e with
+        | CstI i            -> i
+        | Var x             -> lookup env x 
+        | Let(list, ebody) ->
+            let env1 =
+                List.fold(fun acc (x, y) ->
+                    let xval = eval y acc
+                    (x, xval) :: acc 
+                ) env list
+            eval ebody env1
+        | Prim("+", e1, e2) -> eval e1 env + eval e2 env
+        | Prim("*", e1, e2) -> eval e1 env * eval e2 env
+        | Prim("-", e1, e2) -> eval e1 env - eval e2 env
+        | Prim _            -> failwith "unknown primitive"
+
+    let test = Let ([("x1", Prim("+", CstI 5, CstI 7)); ("x2", Prim("*", Var "x1", CstI 2))], Prim("+", Var "x1", Var "x2"))
+    let test2 = Let ([("x1", Prim("+", CstI 5, CstI 7)); ("x2", Prim("*", CstI 12, CstI 2))], Prim("+", Var "x1", Var "x2"))
+    
+    // Exercise 2.2 (i)
+    
+    let rec mem x vs = 
+        match vs with
+        | []      -> false
+        | v :: vr -> x=v || mem x vr
+        
+    let rec union (xs, ys) = 
+        match xs with 
+        | []    -> ys
+        | x::xr -> if mem x ys then union(xr, ys)
+                   else x :: union(xr, ys)
+                   
+    let rec minus (xs, ys) = 
+        match xs with 
+        | []    -> []
+        | x::xr -> if mem x ys then minus(xr, ys)
+                   else x :: minus (xr, ys)
+                   
+    let rec freevars e : string list =
+        match e with
+        | CstI i -> []
+        | Var x  -> [x]
+        (*
+        | Let(x, erhs, ebody) -> 
+              union (freevars erhs, minus (freevars ebody, [x]))
+        *)
+        | Let(list, ebody) ->
+            List.fold (fun acc (x, erhs) -> union ((union (freevars erhs, minus (freevars ebody, [x]))), acc)) [] list
+        | Prim(ope, e1, e2) -> union (freevars e1, freevars e2)
+        
+    let test3 = Let([("x1", Prim("+", Var "x1", CstI 7))], Prim("+", Var "x1", CstI 8))
+    
+    // Exercise 2.3 (i)
+    type texpr =                            (* target expressions *)
+      | TCstI of int
+      | TVar of int                         (* index into runtime environment *)
+      | TLet of texpr * texpr               (* erhs and ebody                 *)
+      | TPrim of string * texpr * texpr
+      
+    let rec getindex vs x = 
+        match vs with 
+        | []    -> failwith "Variable not found"
+        | y::yr -> if x=y then 0 else 1 + getindex yr x
+        
+    let rec tcomp (e : expr) (cenv : string list) : texpr =
+        match e with
+        | CstI i -> TCstI i
+        | Var x  -> TVar (getindex cenv x)
+        (*
+        | Let(x, erhs, ebody) -> 
+          let cenv1 = x :: cenv 
+          TLet(tcomp erhs cenv, tcomp ebody cenv1)
+        *)
+        | Let(list, ebody) ->
+            let cenv1 = List.fold(fun acc (x, _) -> x :: acc) cenv list
+            TLet(tcomp _ cenv, tcomp ebody cenv1)
+        | Prim(ope, e1, e2) -> TPrim(ope, tcomp e1 cenv, tcomp e2 cenv)
