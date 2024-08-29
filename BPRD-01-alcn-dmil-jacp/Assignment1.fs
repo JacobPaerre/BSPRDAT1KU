@@ -109,8 +109,3 @@ module Assignment1 =
         | Add(e1, e2) -> Add((diff e1 v), (diff e2 v))
         | Sub(e1, e2) -> Sub((diff e1 v), (diff e2 v))
         | Mul(e1, e2) -> Add(Mul((diff e1 v), e2), Mul(e1, (diff e2 v)))
-        
-        
-    
-    
-    
