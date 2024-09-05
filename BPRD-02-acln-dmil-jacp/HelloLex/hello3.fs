@@ -37,18 +37,18 @@ let rec _fslex_dummy () = _fslex_dummy()
 and Tokenize  lexbuf =
   match _fslex_tables.Interpret(0,lexbuf) with
   | 0 -> ( 
-# 9 "hello3.fsl"
-                                                                     LexBuffer<char>.LexemeString lexbuf 
+# 13 "hello3.fsl"
+                                     LexBuffer<char>.LexemeString lexbuf 
 # 42 "hello3.fs"
           )
   | 1 -> ( 
-# 10 "hello3.fsl"
+# 14 "hello3.fsl"
                                      failwith "Lexer error: illegal symbol" 
 # 47 "hello3.fs"
           )
   | _ -> failwith "Tokenize"
 
-# 13 "hello3.fsl"
+# 17 "hello3.fsl"
   // ending
 
 [<EntryPoint>]
