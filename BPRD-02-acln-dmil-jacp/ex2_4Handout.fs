@@ -11,7 +11,7 @@ let sinstrToInt = function
   | SPop    -> [5]
   | SSwap   -> [6]
 
-let assemble instrs = List.fold (fun elem acc -> (acc :: sinstrToInt elem)) instrs [] 
+let assemble instrs = List.fold (fun acc elem -> (acc @ sinstrToInt elem)) [] instrs 
 
 (* Output the integers in list inss to the text file called fname: *)
 
