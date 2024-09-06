@@ -6,6 +6,6 @@
 
 ## Construct the corresponding NFA. Try to find a DFA corresponding to the NFA.
 
-![Picture of corresponding NFA](<Skærmbillede 2024-09-06 kl. 13.25.07.png>)
+![Picture of corresponding NFA](<nfa.png>)
 
 Btw this is also a DFA :)
