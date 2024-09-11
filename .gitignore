@@ -32,4 +32,6 @@ bin
 
 .DS_Store
 .idea/
+
+*.zip
 # End of https://www.toptal.com/developers/gitignore/api/git,fsharp
