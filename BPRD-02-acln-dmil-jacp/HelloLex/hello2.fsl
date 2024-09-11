@@ -5,9 +5,11 @@ open FSharp.Text.Lexing
 open System
 }
 
+// Our code:
 rule Tokenize = parse
   | ['0'-'9']+       { LexBuffer<char>.LexemeString lexbuf }
   | _               { failwith "Lexer error: illegal symbol" }
+// END
 
 
 { // ending

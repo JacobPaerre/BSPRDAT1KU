@@ -5,9 +5,11 @@ open FSharp.Text.Lexing
 open System
 }
 
+// Our code:
 let sign = ['+' '-']
 let digit = ['0'-'9']
 let intOrFloat = sign?(digit*['.'])?digit+
+// END
 
 rule Tokenize = parse
   | intOrFloat      { LexBuffer<char>.LexemeString lexbuf }
