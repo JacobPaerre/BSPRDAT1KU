@@ -24,7 +24,7 @@
 | H        | LET z = Expr IN **Expr + Expr** \* 3 END EOF |
 | C        | LET z = Expr IN Expr + **2** \* 3 END EOF    |
 | B        | LET z = Expr IN **z** + 2 \* 3 END EOF       |
-| E        | LET z = **( Expr )** IN z + 3 \* 3 END EOF   |
+| E        | LET z = **( Expr )** IN z + 2 \* 3 END EOF   |
 | C        | LET z = ( **17** ) IN z + 2 \* 3 END EOF     |
 |          | LET z = ( 17 ) IN z + 2 \* 3 END EOF         |
 
