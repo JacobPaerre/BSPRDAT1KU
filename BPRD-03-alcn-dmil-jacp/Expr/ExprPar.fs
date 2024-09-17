@@ -143,8 +143,8 @@ let _fsyacc_sparseGotoTableRowOffsets = [|0us;1us;3us;|]
 let _fsyacc_stateToProdIdxsTableElements = [| 1us;0us;1us;0us;4us;1us;7us;8us;9us;1us;1us;1us;2us;1us;3us;1us;4us;1us;4us;1us;5us;4us;5us;7us;8us;9us;1us;5us;1us;6us;1us;6us;1us;6us;4us;6us;7us;8us;9us;1us;6us;4us;6us;7us;8us;9us;1us;6us;4us;7us;7us;8us;9us;4us;7us;8us;8us;9us;4us;7us;8us;9us;9us;1us;7us;1us;8us;1us;9us;|]
 let _fsyacc_stateToProdIdxsTableRowOffsets = [|0us;2us;4us;9us;11us;13us;15us;17us;19us;21us;26us;28us;30us;32us;34us;39us;41us;46us;48us;53us;58us;63us;65us;67us;|]
 let _fsyacc_action_rows = 24
-let _fsyacc_actionTableElements = [|5us;32768us;1us;8us;5us;11us;7us;6us;11us;4us;12us;5us;0us;49152us;4us;32768us;0us;3us;6us;22us;7us;23us;8us;21us;0us;16385us;0us;16386us;0us;16387us;1us;32768us;12us;7us;0us;16388us;5us;32768us;1us;8us;5us;11us;7us;6us;11us;4us;12us;5us;4us;32768us;2us;10us;6us;22us;7us;23us;8us;21us;0us;16389us;1us;32768us;11us;12us;1us;32768us;10us;13us;5us;32768us;1us;8us;5us;11us;7us;6us;11us;4us;12us;5us;4us;32768us;4us;15us;6us;22us;7us;23us;8us;21us;5us;32768us;1us;8us;5us;11us;7us;6us;11us;4us;12us;5us;4us;32768us;3us;17us;6us;22us;7us;23us;8us;21us;0us;16390us;0us;16391us;1us;16392us;8us;21us;1us;16393us;8us;21us;5us;32768us;1us;8us;5us;11us;7us;6us;11us;4us;12us;5us;5us;32768us;1us;8us;5us;11us;7us;6us;11us;4us;12us;5us;5us;32768us;1us;8us;5us;11us;7us;6us;11us;4us;12us;5us;|]
-let _fsyacc_actionTableRowOffsets = [|0us;6us;7us;12us;13us;14us;15us;17us;18us;24us;29us;30us;32us;34us;40us;45us;51us;56us;57us;58us;60us;62us;68us;74us;|]
+let _fsyacc_actionTableElements = [|5us;32768us;1us;8us;5us;11us;7us;6us;11us;4us;12us;5us;0us;49152us;4us;32768us;0us;3us;6us;22us;7us;23us;8us;21us;0us;16385us;0us;16386us;0us;16387us;1us;32768us;12us;7us;0us;16388us;5us;32768us;1us;8us;5us;11us;7us;6us;11us;4us;12us;5us;4us;32768us;2us;10us;6us;22us;7us;23us;8us;21us;0us;16389us;1us;32768us;11us;12us;1us;32768us;10us;13us;5us;32768us;1us;8us;5us;11us;7us;6us;11us;4us;12us;5us;4us;32768us;4us;15us;6us;22us;7us;23us;8us;21us;5us;32768us;1us;8us;5us;11us;7us;6us;11us;4us;12us;5us;4us;32768us;3us;17us;6us;22us;7us;23us;8us;21us;0us;16390us;3us;16391us;6us;22us;7us;23us;8us;21us;3us;16392us;6us;22us;7us;23us;8us;21us;3us;16393us;6us;22us;7us;23us;8us;21us;5us;32768us;1us;8us;5us;11us;7us;6us;11us;4us;12us;5us;5us;32768us;1us;8us;5us;11us;7us;6us;11us;4us;12us;5us;5us;32768us;1us;8us;5us;11us;7us;6us;11us;4us;12us;5us;|]
+let _fsyacc_actionTableRowOffsets = [|0us;6us;7us;12us;13us;14us;15us;17us;18us;24us;29us;30us;32us;34us;40us;45us;51us;56us;57us;61us;65us;69us;75us;81us;|]
 let _fsyacc_reductionSymbolCounts = [|1us;2us;1us;1us;2us;3us;7us;3us;3us;3us;|]
 let _fsyacc_productionToNonTerminalTable = [|0us;1us;2us;2us;2us;2us;2us;2us;2us;2us;|]
 let _fsyacc_immediateActions = [|65535us;49152us;65535us;16385us;16386us;16387us;65535us;16388us;65535us;65535us;16389us;65535us;65535us;65535us;65535us;65535us;65535us;16390us;65535us;65535us;65535us;65535us;65535us;65535us;|]
@@ -164,10 +164,10 @@ let _fsyacc_reductions = lazy [|
             Microsoft.FSharp.Core.Operators.box
                 (
                    (
-# 25 "ExprPar.fsy"
+# 23 "ExprPar.fsy"
                                                                _1                
                    )
-# 25 "ExprPar.fsy"
+# 23 "ExprPar.fsy"
                  : Absyn.expr));
 # 172 "ExprPar.fs"
         (fun (parseState : FSharp.Text.Parsing.IParseState) ->
@@ -175,10 +175,10 @@ let _fsyacc_reductions = lazy [|
             Microsoft.FSharp.Core.Operators.box
                 (
                    (
-# 29 "ExprPar.fsy"
+# 27 "ExprPar.fsy"
                                                                Var _1            
                    )
-# 29 "ExprPar.fsy"
+# 27 "ExprPar.fsy"
                  : 'gentype_Expr));
 # 183 "ExprPar.fs"
         (fun (parseState : FSharp.Text.Parsing.IParseState) ->
@@ -186,10 +186,10 @@ let _fsyacc_reductions = lazy [|
             Microsoft.FSharp.Core.Operators.box
                 (
                    (
-# 30 "ExprPar.fsy"
+# 28 "ExprPar.fsy"
                                                                CstI _1           
                    )
-# 30 "ExprPar.fsy"
+# 28 "ExprPar.fsy"
                  : 'gentype_Expr));
 # 194 "ExprPar.fs"
         (fun (parseState : FSharp.Text.Parsing.IParseState) ->
@@ -197,10 +197,10 @@ let _fsyacc_reductions = lazy [|
             Microsoft.FSharp.Core.Operators.box
                 (
                    (
-# 31 "ExprPar.fsy"
+# 29 "ExprPar.fsy"
                                                                CstI (- _2)       
                    )
-# 31 "ExprPar.fsy"
+# 29 "ExprPar.fsy"
                  : 'gentype_Expr));
 # 205 "ExprPar.fs"
         (fun (parseState : FSharp.Text.Parsing.IParseState) ->
@@ -208,10 +208,10 @@ let _fsyacc_reductions = lazy [|
             Microsoft.FSharp.Core.Operators.box
                 (
                    (
-# 32 "ExprPar.fsy"
+# 30 "ExprPar.fsy"
                                                                _2                
                    )
-# 32 "ExprPar.fsy"
+# 30 "ExprPar.fsy"
                  : 'gentype_Expr));
 # 216 "ExprPar.fs"
         (fun (parseState : FSharp.Text.Parsing.IParseState) ->
@@ -221,10 +221,10 @@ let _fsyacc_reductions = lazy [|
             Microsoft.FSharp.Core.Operators.box
                 (
                    (
-# 33 "ExprPar.fsy"
+# 31 "ExprPar.fsy"
                                                                Let(_2, _4, _6)   
                    )
-# 33 "ExprPar.fsy"
+# 31 "ExprPar.fsy"
                  : 'gentype_Expr));
 # 229 "ExprPar.fs"
         (fun (parseState : FSharp.Text.Parsing.IParseState) ->
@@ -233,10 +233,10 @@ let _fsyacc_reductions = lazy [|
             Microsoft.FSharp.Core.Operators.box
                 (
                    (
-# 34 "ExprPar.fsy"
+# 32 "ExprPar.fsy"
                                                                Prim("*", _1, _3) 
                    )
-# 34 "ExprPar.fsy"
+# 32 "ExprPar.fsy"
                  : 'gentype_Expr));
 # 241 "ExprPar.fs"
         (fun (parseState : FSharp.Text.Parsing.IParseState) ->
@@ -245,10 +245,10 @@ let _fsyacc_reductions = lazy [|
             Microsoft.FSharp.Core.Operators.box
                 (
                    (
-# 35 "ExprPar.fsy"
+# 33 "ExprPar.fsy"
                                                                Prim("+", _1, _3) 
                    )
-# 35 "ExprPar.fsy"
+# 33 "ExprPar.fsy"
                  : 'gentype_Expr));
 # 253 "ExprPar.fs"
         (fun (parseState : FSharp.Text.Parsing.IParseState) ->
@@ -257,10 +257,10 @@ let _fsyacc_reductions = lazy [|
             Microsoft.FSharp.Core.Operators.box
                 (
                    (
-# 36 "ExprPar.fsy"
+# 34 "ExprPar.fsy"
                                                                Prim("-", _1, _3) 
                    )
-# 36 "ExprPar.fsy"
+# 34 "ExprPar.fsy"
                  : 'gentype_Expr));
 |]
 # 266 "ExprPar.fs"
