@@ -70,3 +70,33 @@ let ex5 = fromString
                  in fib 25 
                  end
               end";;
+
+
+
+(* Exercise 4.2 *)
+              
+let ex4_2_a = fromString
+                @"let sum n = if n=1 then 1 else n + sum(n-1)
+                  in sum 1000
+                  end";;
+                 
+let ex4_2_b = fromString
+                @"let expo n = if n=1 then 3 else 3 * expo(n-1)
+                  in expo 8
+                  end";;
+
+let ex4_2_c = fromString
+                @"let expo n = if n=0 then 1 else 3 * expo(n-1)
+                  in let sum n = if n=0 then expo n else (expo n) + sum(n-1)
+                     in sum 11
+                     end
+                  end";;
+
+
+(* We could not figure out how to raise something to the 8th power using a function and without the ** operator *)
+let ex4_2_d = fromString
+                @"let expo n = n*n*n*n*n*n*n*n
+                  in let sum n = if n=1 then expo n else (expo n) + sum(n-1)
+                     in sum 10
+                     end
+                  end";;
