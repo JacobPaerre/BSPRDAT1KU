@@ -29,3 +29,4 @@
 |          | LET z = ( 17 ) IN z + 2 \* 3 END EOF         |
 
 # Exercise 3.4: Draw the Tree
+![](Exercise3_3_treepng.png)
