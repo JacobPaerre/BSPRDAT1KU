@@ -8,6 +8,7 @@ open System.IO
 open System.Text
 open FSharp.Text.Lexing
 open Absyn
+open Expr
 
 (* Plain parsing from a string, with poor error reporting *)
 
@@ -35,5 +36,4 @@ let fromFile (filename : string) =
 
 (* Exercise 3.6 *)
 
-let compString (str : string) = 
-    scomp (fromstring str) []
+let compString (str : string) = scomp (fromString str) []
