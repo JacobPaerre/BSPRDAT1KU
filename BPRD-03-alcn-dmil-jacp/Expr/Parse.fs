@@ -32,3 +32,7 @@ let fromFile (filename : string) =
                failwithf "%s in file %s near line %d, column %d\n" 
                   (exn.Message) filename (pos.Line+1) pos.Column
 
+(* Exercise 3.6 *)
+
+let compString (str : string) = 
+    scomp (fromstring str) []
