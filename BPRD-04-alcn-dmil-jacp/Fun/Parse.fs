@@ -100,3 +100,13 @@ let ex4_2_d = fromString
                      in sum 10
                      end
                   end";;
+
+(* Exercise 4.4 *)
+let ex4_4_a = fromString
+                @"let pow x n = if n=0 then 1 else x * pow x (n-1) in pow 3 8 end";;
+
+let ex4_4_b = fromString
+                @"let max2 a b = if a<b then b else a
+                  in let max3 abc= max2 a (max2 b c)
+                    in max3 25 6 62 end
+                end";;
