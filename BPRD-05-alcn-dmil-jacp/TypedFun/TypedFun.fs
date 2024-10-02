@@ -37,7 +37,7 @@ type typ =
   | TypI                                (* int                         *)
   | TypB                                (* bool                        *)
   | TypF of typ * typ                   (* (argumenttype, resulttype)  *)
-  | TypL of typ
+  | TypL of typ                         (* list, element type is typ   *)
 
 (* New abstract syntax with explicit types, instead of Absyn.expr: *)
 
@@ -140,6 +140,10 @@ let rec typ (e : tyexpr) (env : typ env) : typ =
         else failwith "Call: wrong argument type"
       | _ -> failwith "Call: unknown function"
     | Call(_, eArg) -> failwith "Call: illegal function in call"
+    (* EXERCISE 5.7 *)
+    | ListExpr(elems, elemTyp) ->
+      elems |> List.iter (fun e -> if typ e env <> elemTyp then failwith "element type mismtach in List")
+      TypL elemTyp
 
 let typeCheck e = typ e [];;
 
