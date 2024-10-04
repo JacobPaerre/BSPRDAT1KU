@@ -72,7 +72,7 @@ let rec eval (e : expr) (env : value env) : value =
         let xVal = eval eArg env
         let bodyEnv = (x, xVal) :: declEnv
         in eval body bodyEnv
-      | _ -> failwith "eval Call: not a function";;
+      | _ -> failwith "eval Call: not a function"
     | Fun(x, body) -> Clos(x, body, env)
       (* Exercise 6.2 END *)       
 

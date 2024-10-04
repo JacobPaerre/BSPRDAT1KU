@@ -39,3 +39,22 @@ in add 2 end
 - Dette returnerer bare en funktion/closure/partially applied function. Her får vi et environment, hvor der er vores `x`-variabel, der har værdien 2, og vi får en `add`, der har en closure.
 
 ### Exercise 6.3: Ændringer i `Absyn.fs` og `HigherFun.fs` er markeret med kommentar om at det er til denne exercise.
+
+### Exercise 6.5a:
+```
+let f x = 1
+in f f end
+```
+
+### Exercise 6.5b:
+1.
+```
+> inferType (fromString "let f x = if x then true else false in f end");;
+val it: string = "(bool -> bool)"
+```
+
+2.
+```
+
+```
+
