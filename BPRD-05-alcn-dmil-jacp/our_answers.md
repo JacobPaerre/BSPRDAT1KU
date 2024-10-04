@@ -41,20 +41,65 @@ in add 2 end
 ### Exercise 6.3: Ændringer i `Absyn.fs` og `HigherFun.fs` er markeret med kommentar om at det er til denne exercise.
 
 ### Exercise 6.5a:
+
 ```
 let f x = 1
 in f f end
 ```
 
 ### Exercise 6.5b:
+
 1.
+
 ```
 > inferType (fromString "let f x = if x then true else false in f end");;
 val it: string = "(bool -> bool)"
 ```
 
 2.
+
 ```
+inferType (fromString "let f x = x+x in f end");;
+val it: string = "(int -> int)"
+```
+
+3.
+
+```
+inferType (fromString "let f x = let g y = x + y in g end in f end");;
+val it: string = "(int -> (int -> int))"
+```
+
+4.
+
+```
+inferType (fromString "let f x = let g y = x in g end in f end");;
+val it: string = "('h -> ('g -> 'h))"
+```
+
+5.
+
+```
+inferType (fromString "let f x = let g y = y in g end in f end");;
+val it: string = "('g -> ('h -> 'h))"
+```
+
+6.
 
 ```
 
+```
+
+7.
+
+```
+inferType (fromString "let f x = f x in f end");;
+val it: string = "('e -> 'f)"
+```
+
+8.
+
+```
+inferType (fromString "let f x = f x in f f end");;
+val it: string = "'f"
+```
