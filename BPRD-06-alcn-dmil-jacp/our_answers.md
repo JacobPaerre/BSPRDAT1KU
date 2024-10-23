@@ -187,6 +187,8 @@ val it: Interp.store =
 
 ### Exercise 7.3
 
+Vi har også rettet i `CLex.fsl` og `CPar.fsy`. Der er en kommentar, der markerer, hvor det er.
+
 ### i: Se ex7_3i.c
 
 ```
