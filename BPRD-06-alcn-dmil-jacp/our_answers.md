@@ -226,3 +226,7 @@ Vi har også rettet i `CLex.fsl` og `CPar.fsy`. Der er en kommentar, der markere
 Changes findes in `Absyn.fs` og `Interp.fs`
 
 ### Exercise 7.5
+
+Ændringer can be found i `CLex.fsl` and `CPar.fsy`
+
+Der er også lavet en testcase i `ex7_5.c` :)

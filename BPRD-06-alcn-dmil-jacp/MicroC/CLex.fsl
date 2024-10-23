@@ -53,7 +53,10 @@ rule Token = parse
   | ['a'-'z''A'-'Z']['a'-'z''A'-'Z''0'-'9']*
                     { keyword (lexemeAsString lexbuf) }
   | '+'             { PLUS } 
-  | '-'             { MINUS } 
+  | '-'             { MINUS }
+  (* Exercise 7.5 *)
+  | "++"            { PREINC }
+  | "--"            { PREDEC } 
   | '*'             { TIMES } 
   | '/'             { DIV } 
   | '%'             { MOD }                     

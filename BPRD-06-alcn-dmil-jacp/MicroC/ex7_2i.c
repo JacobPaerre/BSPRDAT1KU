@@ -1,4 +1,4 @@
-//Exersice 7.2i
+//Exercise 7.2i
 
 
 //main creates an array holding the four numbers 7, 13, 9, 8, 

@@ -1,4 +1,4 @@
-//Exercise 7.3i
+//Exercise 7.5 test case
 
 
 //main creates an array holding the four numbers 7, 13, 9, 8, 
@@ -16,14 +16,11 @@ void main() {
     print s;
 }
 
-
-/* Exercise 7.3 */
-
 void arrsum(int n, int arr[], int *sump) {
     int i;
     *sump = 0;
 
-    for (i = 0; i < n; i = i + 1) {
+    for (i = 0; i < n; ++i) {
         *sump = *sump + arr[i];
     }
 }

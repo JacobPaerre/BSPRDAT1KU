@@ -23,6 +23,8 @@ type token =
   | LE
   | PLUS
   | MINUS
+  | PREINC
+  | PREDEC
   | TIMES
   | DIV
   | MOD
@@ -64,6 +66,8 @@ type tokenId =
     | TOKEN_LE
     | TOKEN_PLUS
     | TOKEN_MINUS
+    | TOKEN_PREINC
+    | TOKEN_PREDEC
     | TOKEN_TIMES
     | TOKEN_DIV
     | TOKEN_MOD
