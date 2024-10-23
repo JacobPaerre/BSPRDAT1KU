@@ -187,6 +187,38 @@ val it: Interp.store =
 
 ### Exercise 7.3
 
+### i: Se ex7_3i.c
+
+```
+> run (fromFile "ex7_3i.c") [];;
+37 val it: Interp.store =
+  map
+
+    [(0, 7); (1, 13); (2, 9); (3, 8); (4, 0); (5, 37); (6, 4); (7, 0); (8, 5);
+     ...]
+```
+
+### ii: Se ex7_3ii.c
+
+```
+> run (fromFile "ex7_3ii.c") [10];;
+285 val it: Interp.store =
+  map
+
+    [(0, 10); (1, 0); (2, 1); (3, 4); (4, 9); (5, 16); (6, 25); (7, 36);
+     (8, 49); ...]
+```
+
+### iii: Se ex7_3iii.c:
+
+```
+> run (fromFile "ex7_3iii.c") [];;
+1 4 2 0 val it: Interp.store =
+  map
+    [(0, 1); (1, 2); (2, 1); (3, 1); (4, 1); (5, 2); (6, 0); (7, 0); (8, 1);
+     ...]
+```
+
 ### Exercise 7.4
 
 ### Exercise 7.5
