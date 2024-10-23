@@ -187,6 +187,13 @@ and eval e locEnv gloEnv store : int * store =
           | ">"  -> if i1 >  i2 then 1 else 0
           | _    -> failwith ("unknown primitive " + ope)
       (res, store2) 
+    (* Exercise 7.4 *)
+    | PreInc acc -> let (loc, store1) = access acc locEnv gloEnv store
+                    let res = (getSto store1 loc) + 1
+                    (res, setSto store1 loc res) 
+    | PreDec acc -> let (loc, store1) = access acc locEnv gloEnv store
+                    let res = (getSto store1 loc) - 1
+                    (res, setSto store1 loc res)
     | Andalso(e1, e2) -> 
       let (i1, store1) as res = eval e1 locEnv gloEnv store
       if i1<>0 then eval e2 locEnv gloEnv store1 else res
