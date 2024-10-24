@@ -107,33 +107,33 @@ val it: Interp.store =
 ```bash
 [LDARGS; CALL (1, "L1"); STOP;
 Label "L1";
-    INCSP 1;                Declare "i"
-    GETBP; CSTI 1; ADD;     Calculate address of next element (&i+1)
-    CSTI 0;                 constant 0
-    STI;                    store 0 on &i+1
-    INCSP -1;               De-allocate ???
+    INCSP 1;                Declare "i" (allocate space for i)
+    GETBP; CSTI 1; ADD;     and calculate address of i (&i)
+    CSTI 0;                 put 0 on the stack
+    STI;                    i = 0 (store 0 at &i)
+    INCSP -1;               remove leftover 0 from stack
     GOTO "L3";
 Label "L2";
-    GETBP; CSTI 1; ADD;
-    LDI;
-    PRINTI;
-    INCSP -1;
-    GETBP; CSTI 1; ADD;
-    GETBP; CSTI 1; ADD;
-    LDI;
-    CSTI 1; ADD;
-    STI;                    
-    INCSP -1;
-    INCSP 0;
+    GETBP; CSTI 1; ADD;     &i
+    LDI;                    load i on top of stack
+    PRINTI;                 print i
+    INCSP -1;               remove i from stack
+    GETBP; CSTI 1; ADD;     &i
+    GETBP; CSTI 1; ADD;     &i
+    LDI;                    load i on top of stack
+    CSTI 1; ADD;            i + 1
+    STI;                    store i + 1 in i
+    INCSP -1;               remove i + 1 from stack (leftover from store)
+    INCSP 0;                dead code
 Label "L3";
-    GETBP; CSTI 1; ADD;     
-    LDI;
-    GETBP; CSTI 0; ADD;
-    LDI;                    load 
+    GETBP; CSTI 1; ADD;     &i
+    LDI;                    load i on top of stack
+    GETBP; CSTI 0; ADD;     &n
+    LDI;                    load n on top of stack
     LT;                     i < n
     IFNZRO "L2";            if above is true, run while-loop again
-    INCSP -1;
-    RET 0]
+    INCSP -1;               if above is false, remove the 0 from stack
+    RET 0]                  program termination
 ```
 
 ### ii (example 5):
@@ -141,42 +141,46 @@ Label "L3";
 ```bash
 [LDARGS; CALL (1, "L1"); STOP;
 Label "L1";                 main
-    INCSP 1;                Declare "r"
-    GETBP; CSTI 1; ADD;     
-    GETBP; CSTI 0; ADD;     AccVar "r", &r
-    LDI;                    Access, r on top of stack.
-    STI;
-    INCSP -1;
-    INCSP 1;
-    GETBP; CSTI 0; ADD;
-    LDI;
-    GETBP; CSTI 2; ADD;
-    CALL (2, "L2");
-    INCSP -1;
-    GETBP; CSTI 2; ADD;
-    LDI;
-    PRINTI;
-    INCSP -1;
-    INCSP -1;
-    GETBP; CSTI 1; ADD;
-    LDI;
-    PRINTI;
-    INCSP -1;
-    INCSP -1;
-    RET 0;
+    INCSP 1;                Declare "r" (allocate space for r)
+    GETBP; CSTI 1; ADD;     and calculate address of r (&r)
+    GETBP; CSTI 0; ADD;     calculate address of n (&n)
+    LDI;                    load n on top of stack
+    STI;                    store n at &r (r = n)
+    INCSP -1;               remove n from stack (leftover from store)
+    INCSP 1;                Declare new "r" (allocate space for new r)
+    GETBP; CSTI 0; ADD;     calculate address of n (&n)
+    LDI;                    load n on top of stack
+    GETBP; CSTI 2; ADD;     calculate address of the new r (&r)
+    CALL (2, "L2");         call square-function with n and &r as arguments
+    INCSP -1;               remove pointer to new r from stack (leftover from call)
+    GETBP; CSTI 2; ADD;     calculate address of the new r (&r)
+    LDI;                    load new r on top of stack
+    PRINTI;                 print new r
+    INCSP -1;               remove new r from stack (leftover from load after print)
+    INCSP -1;               remove original new r from stack (we are done with it)
+    GETBP; CSTI 1; ADD;     calculate address of r (&r)
+    LDI;                    load r on top of stack
+    PRINTI;                 print r
+    INCSP -1;               remove r from stack (leftover from load after print)
+    INCSP -1;               remove original r from stack (we are done with it)
+    RET 0;                  program termination
 Label "L2";                 square-function
-    GETBP; CSTI 1; ADD;     find index for *rp
-    LDI;                    load *rp
-    GETBP; CSTI 0; ADD;     find index for i
+    GETBP; CSTI 1; ADD;     find address of rp (pointer to new r in block in main)
+    LDI;                    load *rp on top of stack
+    GETBP; CSTI 0; ADD;     find index for i (n in block in main)
     LDI;                    load i
     GETBP; CSTI 0; ADD;     find index for i
     LDI;                    load i
     MUL;                    multiply top 2 elements (i * i)
-    STI;                    store value i*i in *rp
-    INCSP -1;
-    INCSP 0;
-    RET 1]
+    STI;                    store value i*i in *rp (*rp = i*i)
+    INCSP -1;               remove i*i from stack (leftover from store)
+    INCSP 0;                dead code
+    RET 1]                  return to main with 1 value (*rp)
 ```
+
+"Note that ex5.c has a nested scope (a block ... inside a function body); how is that visible in the generated code?"
+
+It is not really visible in the generated code. The reason for this is, that the code doesn't really care about the name of the variables, but only about their addresses. The addresses are calculated based on the current base pointer and just continue on top of the current stack. The allocated space in the block is "deleted" afterwards by adjusting the stack pointer.
 
 ## Exercise 8.3
 
