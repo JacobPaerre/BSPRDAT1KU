@@ -1,11 +1,11 @@
 void main() {
     int arr[3];
-    arr = {1, 2, 3};
+    arr[0] = 2;
+    arr[1] = 4;
+    arr[2] = 6;
     int i;
     i = 0;
     int res;
     res = ++arr[++i];
-    print res[0];
-    print res[1];
-    print res[2];
+    print res;
 }
