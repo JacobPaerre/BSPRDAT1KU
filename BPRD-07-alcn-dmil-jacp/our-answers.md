@@ -399,6 +399,38 @@ Ran 0.14 seconds
 ```
 
 ## Exercise 8.3
+Code changes in `Comp.fs` marked with "Exercise 8.3"
+
+Examples functions can be found in `ex8_3i.c` and `ex8_3ii.c`.
+```bash
+> compileToFile (fromFile "ex8_3i.c") "ex8_3i.out";;
+val it: Machine.instr list =
+  [LDARGS; CALL (0, "L1"); STOP; Label "L1"; INCSP 1; GETBP; CSTI 0; ADD;
+   CSTI 0; STI; INCSP -1; INCSP 1; GETBP; CSTI 1; ADD; GETBP; CSTI 0; ADD; DUP;
+   LDI; CSTI 1; ADD; STI; STI; INCSP -1; GETBP; CSTI 0; ADD; LDI; PRINTI;
+   INCSP -1; GETBP; CSTI 1; ADD; LDI; PRINTI; INCSP -1; INCSP -2; RET -1]
+```
+```bash
+$ java Machine ex8_3i.out
+1 1
+```
+
+```bash
+> compileToFile (fromFile "ex8_3ii.c") "ex8_3ii.out";;
+val it: Machine.instr list =
+  [LDARGS; CALL (0, "L1"); STOP; Label "L1"; INCSP 3; GETSP; CSTI 2; SUB;
+   GETBP; CSTI 3; ADD; LDI; CSTI 0; ADD; CSTI 2; STI; INCSP -1; GETBP; CSTI 3;
+   ADD; LDI; CSTI 1; ADD; CSTI 4; STI; INCSP -1; GETBP; CSTI 3; ADD; LDI;
+   CSTI 2; ADD; CSTI 6; STI; INCSP -1; INCSP 1; GETBP; CSTI 4; ADD; CSTI 0;
+   STI; INCSP -1; INCSP 1; GETBP; CSTI 5; ADD; GETBP; CSTI 3; ADD; LDI; GETBP;
+   CSTI 4; ADD; DUP; LDI; CSTI 1; ADD; STI; ADD; DUP; LDI; CSTI 1; ADD; STI;
+   STI; INCSP -1; GETBP; CSTI 5; ADD; LDI; PRINTI; INCSP -1; INCSP -6; RET -1]
+```
+
+```bash
+$ java Machine ex8_3ii.out
+5
+```
 
 ## Exercise 8.4
 
