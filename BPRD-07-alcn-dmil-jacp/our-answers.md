@@ -339,66 +339,64 @@ Ran 0.019 seconds
 
 ```zsh
 $ java Machinetrace ex5.out 4
-[ ]{0: LDARGS}
-[ 4 ]{1: CALL 1 5}
-[ 4 -999 4 ]{5: INCSP 1}
-[ 4 -999 4 0 ]{7: GETBP}
-[ 4 -999 4 0 2 ]{8: CSTI 1}
-[ 4 -999 4 0 2 1 ]{10: ADD}
-[ 4 -999 4 0 3 ]{11: GETBP}
-[ 4 -999 4 0 3 2 ]{12: CSTI 0}
-[ 4 -999 4 0 3 2 0 ]{14: ADD}
-[ 4 -999 4 0 3 2 ]{15: LDI}
-[ 4 -999 4 0 3 4 ]{16: STI}
-[ 4 -999 4 4 4 ]{17: INCSP -1}
-[ 4 -999 4 4 ]{19: INCSP 1}
-[ 4 -999 4 4 4 ]{21: GETBP}
-[ 4 -999 4 4 4 2 ]{22: CSTI 0}
-[ 4 -999 4 4 4 2 0 ]{24: ADD}
-[ 4 -999 4 4 4 2 ]{25: LDI}
-[ 4 -999 4 4 4 4 ]{26: GETBP}
-[ 4 -999 4 4 4 4 2 ]{27: CSTI 2}
-[ 4 -999 4 4 4 4 2 2 ]{29: ADD}
-[ 4 -999 4 4 4 4 4 ]{30: CALL 2 57}
-[ 4 -999 4 4 4 33 2 4 4 ]{57: GETBP}
-[ 4 -999 4 4 4 33 2 4 4 7 ]{58: CSTI 1}
-[ 4 -999 4 4 4 33 2 4 4 7 1 ]{60: ADD}
-[ 4 -999 4 4 4 33 2 4 4 8 ]{61: LDI}
-[ 4 -999 4 4 4 33 2 4 4 4 ]{62: GETBP}
-[ 4 -999 4 4 4 33 2 4 4 4 7 ]{63: CSTI 0}
-[ 4 -999 4 4 4 33 2 4 4 4 7 0 ]{65: ADD}
-[ 4 -999 4 4 4 33 2 4 4 4 7 ]{66: LDI}
-[ 4 -999 4 4 4 33 2 4 4 4 4 ]{67: GETBP}
-[ 4 -999 4 4 4 33 2 4 4 4 4 7 ]{68: CSTI 0}
-[ 4 -999 4 4 4 33 2 4 4 4 4 7 0 ]{70: ADD}
-[ 4 -999 4 4 4 33 2 4 4 4 4 7 ]{71: LDI}
-[ 4 -999 4 4 4 33 2 4 4 4 4 4 ]{72: MUL}
-[ 4 -999 4 4 4 33 2 4 4 4 16 ]{73: STI}
-[ 4 -999 4 4 16 33 2 4 4 16 ]{74: INCSP -1}
+[ ]{0: LDARGS}                          # load cli argumenter
+[ 4 ]{1: CALL 1 5}                      # kald 5 (main) med 1 argument
+[ 4 -999 4 ]{5: INCSP 1}                # øg sp med 1: gør plads til r
+[ 4 -999 4 0 ]{7: GETBP}                # find base pointer
+[ 4 -999 4 0 2 ]{8: CSTI 1}             # tilføj 1 til stacken
+[ 4 -999 4 0 2 1 ]{10: ADD}             # plus 2 øverste elementer: find index-placering for r
+[ 4 -999 4 0 3 ]{11: GETBP}             # find base pointer
+[ 4 -999 4 0 3 2 ]{12: CSTI 0}          # tilføj 0 til stacken
+[ 4 -999 4 0 3 2 0 ]{14: ADD}           # plus 2 øverste elementer: find index-placering for n
+[ 4 -999 4 0 3 2 ]{15: LDI}             # load n's værdi
+[ 4 -999 4 0 3 4 ]{16: STI}             # store den loadede værdi på index-placeringen for r
+[ 4 -999 4 4 4 ]{17: INCSP -1}          # skrump sp med 1 (fjern værdien 4 (den værdi vi lige har storet))
+[ 4 -999 4 4 ]{19: INCSP 1}             # øg sp med 1: gør plads til int r inde i blocken
+[ 4 -999 4 4 4 ]{21: GETBP}             # find base pointer
+[ 4 -999 4 4 4 2 ]{22: CSTI 0}          # tilføj 0 til stacken
+[ 4 -999 4 4 4 2 0 ]{24: ADD}           # plus 2 øverste elementer: find index-placering for n
+[ 4 -999 4 4 4 2 ]{25: LDI}             # load værdi for n
+[ 4 -999 4 4 4 4 ]{26: GETBP}           # find base pointer
+[ 4 -999 4 4 4 4 2 ]{27: CSTI 2}        # tilføj 2 til stacken
+[ 4 -999 4 4 4 4 2 2 ]{29: ADD}         # plus 2 øverste elementer: find index-placering for r inde i vores block
+[ 4 -999 4 4 4 4 4 ]{30: CALL 2 57}     # kald 57 (square) med 2 argumenter (n og placering for r)
+[ 4 -999 4 4 4 33 2 4 4 ]{57: GETBP}    # find base pointer
+[ 4 -999 4 4 4 33 2 4 4 7 ]{58: CSTI 1} # tilføj 1 til stacken
+[ 4 -999 4 4 4 33 2 4 4 7 1 ]{60: ADD}  # plus 2 øverste elementer: find index-placering for *rp
+[ 4 -999 4 4 4 33 2 4 4 8 ]{61: LDI}    # load værdi for rp
+[ 4 -999 4 4 4 33 2 4 4 4 ]{62: GETBP}  # find base pointer
+[ 4 -999 4 4 4 33 2 4 4 4 7 ]{63: CSTI 0}   # tilføj 0 til stacken
+[ 4 -999 4 4 4 33 2 4 4 4 7 0 ]{65: ADD}    # plus 2 øverste elementer: find index-placering for i
+[ 4 -999 4 4 4 33 2 4 4 4 7 ]{66: LDI}  # load værdi for i
+[ 4 -999 4 4 4 33 2 4 4 4 4 ]{67: GETBP}    # find base pointer
+[ 4 -999 4 4 4 33 2 4 4 4 4 7 ]{68: CSTI 0} # tilføj 0 til stacken
+[ 4 -999 4 4 4 33 2 4 4 4 4 7 0 ]{70: ADD}  # plus 2 øverste elementer: find index-placering for i
+[ 4 -999 4 4 4 33 2 4 4 4 4 7 ]{71: LDI}    # load i
+[ 4 -999 4 4 4 33 2 4 4 4 4 4 ]{72: MUL}    # gang de øverste elementer: i * i
+[ 4 -999 4 4 4 33 2 4 4 4 16 ]{73: STI} # store den værdi vi lige har fundet ovenfor i værdien for *rp.
+[ 4 -999 4 4 16 33 2 4 4 16 ]{74: INCSP -1} # skrump sp med 1: fjern den værdi vi har storet fra stacken
 [ 4 -999 4 4 16 33 2 4 4 ]{76: INCSP 0}
-[ 4 -999 4 4 16 33 2 4 4 ]{78: RET 1}
-[ 4 -999 4 4 16 4 ]{33: INCSP -1}
-[ 4 -999 4 4 16 ]{35: GETBP}
-[ 4 -999 4 4 16 2 ]{36: CSTI 2}
-[ 4 -999 4 4 16 2 2 ]{38: ADD}
-[ 4 -999 4 4 16 4 ]{39: LDI}
-[ 4 -999 4 4 16 16 ]{40: PRINTI}
-16 [ 4 -999 4 4 16 16 ]{41: INCSP -1}
-[ 4 -999 4 4 16 ]{43: INCSP -1}
-[ 4 -999 4 4 ]{45: GETBP}
-[ 4 -999 4 4 2 ]{46: CSTI 1}
-[ 4 -999 4 4 2 1 ]{48: ADD}
-[ 4 -999 4 4 3 ]{49: LDI}
-[ 4 -999 4 4 4 ]{50: PRINTI}
-4 [ 4 -999 4 4 4 ]{51: INCSP -1}
-[ 4 -999 4 4 ]{53: INCSP -1}
-[ 4 -999 4 ]{55: RET 0}
-[ 4 ]{4: STOP}
+[ 4 -999 4 4 16 33 2 4 4 ]{78: RET 1}   # return adressen til r
+[ 4 -999 4 4 16 4 ]{33: INCSP -1}       # skrump sp med 1: fjern adressen for r
+[ 4 -999 4 4 16 ]{35: GETBP}            # find base pointer
+[ 4 -999 4 4 16 2 ]{36: CSTI 2}         # tilføj 2 til stacken
+[ 4 -999 4 4 16 2 2 ]{38: ADD}          # plus 2 øverste elementer: find index-placering for r inde i vores block
+[ 4 -999 4 4 16 4 ]{39: LDI}            # load værdien for r i vores block
+[ 4 -999 4 4 16 16 ]{40: PRINTI}        # print værdien for r
+16 [ 4 -999 4 4 16 16 ]{41: INCSP -1}   # skrump stacken med 1: fjern værdien for r
+[ 4 -999 4 4 16 ]{43: INCSP -1}         # skrump stacken med 1: fjern værdien for r (igen)
+[ 4 -999 4 4 ]{45: GETBP}               # find base pointer
+[ 4 -999 4 4 2 ]{46: CSTI 1}            # tilføj 1 til stacken
+[ 4 -999 4 4 2 1 ]{48: ADD}             # plus 2 øverste elementer: find adressen for r i vores main-metode - ikke i block længere,
+[ 4 -999 4 4 3 ]{49: LDI}               # load værdi for r
+[ 4 -999 4 4 4 ]{50: PRINTI}            # print værdi for r
+4 [ 4 -999 4 4 4 ]{51: INCSP -1}        # skrump stack med 1: fjern værdi for r fra stacken
+[ 4 -999 4 4 ]{53: INCSP -1}            # skrump stacken med 1: fjern int r
+[ 4 -999 4 ]{55: RET 0}                 # main returnerer 0 (default), og metoden er kørt færdig.
+[ 4 ]{4: STOP}                          # program død.
 
 Ran 0.14 seconds
 ```
-
-Vi skal lige se lidt mere på den her opgave...
 
 ## Exercise 8.3
 
