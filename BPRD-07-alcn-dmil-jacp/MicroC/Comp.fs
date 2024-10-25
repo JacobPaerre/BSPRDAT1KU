@@ -190,6 +190,8 @@ and cExpr (e : expr) (varEnv : varEnv) (funEnv : funEnv) : instr list =
          | ">"   -> [SWAP; LT]
          | "<="  -> [SWAP; LT; NOT]
          | _     -> raise (Failure "unknown primitive 2"))
+    | PreInc acc -> cAccess acc varEnv funEnv @ [DUP; LDI; CSTI 1; ADD; STI]
+    | PreDec acc -> cAccess acc varEnv funEnv @ [DUP; LDI; CSTI 1; SUB; STI]
     | Andalso(e1, e2) ->
       let labend   = newLabel()
       let labfalse = newLabel()
