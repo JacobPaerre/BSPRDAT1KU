@@ -184,53 +184,53 @@ It is not really visible in the generated code. The reason for this is, that the
 
 ### Execute & Trace:
 
-```
-$ java Machine ex3.out 4 
-0 1 2 3 
+```bash
+$ java Machine ex3.out 4
+0 1 2 3
 Ran 0.042 seconds
 ```
 
-```
-$ java Machinetrace ex3.out 4 
-[ ]{0: LDARGS}
-[ 4 ]{1: CALL 1 5}
-[ 4 -999 4 ]{5: INCSP 1}
-[ 4 -999 4 0 ]{7: GETBP}
-[ 4 -999 4 0 2 ]{8: CSTI 1}
-[ 4 -999 4 0 2 1 ]{10: ADD}
-[ 4 -999 4 0 3 ]{11: CSTI 0}
-[ 4 -999 4 0 3 0 ]{13: STI}
-[ 4 -999 4 0 0 ]{14: INCSP -1}
-[ 4 -999 4 0 ]{16: GOTO 43}
-[ 4 -999 4 0 ]{43: GETBP}
-[ 4 -999 4 0 2 ]{44: CSTI 1}
-[ 4 -999 4 0 2 1 ]{46: ADD}
-[ 4 -999 4 0 3 ]{47: LDI}
-[ 4 -999 4 0 0 ]{48: GETBP}
-[ 4 -999 4 0 0 2 ]{49: CSTI 0}
-[ 4 -999 4 0 0 2 0 ]{51: ADD}
-[ 4 -999 4 0 0 2 ]{52: LDI}
-[ 4 -999 4 0 0 4 ]{53: LT}
-[ 4 -999 4 0 1 ]{54: IFNZRO 18}
-[ 4 -999 4 0 ]{18: GETBP}
-[ 4 -999 4 0 2 ]{19: CSTI 1}
-[ 4 -999 4 0 2 1 ]{21: ADD}
-[ 4 -999 4 0 3 ]{22: LDI}
-[ 4 -999 4 0 0 ]{23: PRINTI}
-0 [ 4 -999 4 0 0 ]{24: INCSP -1}
-[ 4 -999 4 0 ]{26: GETBP}
-[ 4 -999 4 0 2 ]{27: CSTI 1}
-[ 4 -999 4 0 2 1 ]{29: ADD}
-[ 4 -999 4 0 3 ]{30: GETBP}
-[ 4 -999 4 0 3 2 ]{31: CSTI 1}
-[ 4 -999 4 0 3 2 1 ]{33: ADD}
-[ 4 -999 4 0 3 3 ]{34: LDI}
-[ 4 -999 4 0 3 0 ]{35: CSTI 1}
-[ 4 -999 4 0 3 0 1 ]{37: ADD}
-[ 4 -999 4 0 3 1 ]{38: STI}
-[ 4 -999 4 1 1 ]{39: INCSP -1}
+```zsh
+$ java Machinetrace ex3.out 4
+[ ]{0: LDARGS}                      # loader argumenter ind i stacken
+[ 4 ]{1: CALL 1 5}                  # kalder metoden på placering 5 (main) med 1 argument (4)
+[ 4 -999 4 ]{5: INCSP 1}            # øger sp med 1 for at gøre plads til i (int i)
+[ 4 -999 4 0 ]{7: GETBP}            # finder base pointer (index 2)
+[ 4 -999 4 0 2 ]{8: CSTI 1}         # tilføjer 1 til stacken
+[ 4 -999 4 0 2 1 ]{10: ADD}         # plusser de 2 øverste elementer (2+1 = 3)
+[ 4 -999 4 0 3 ]{11: CSTI 0}        # tilføjer 0 til stacken
+[ 4 -999 4 0 3 0 ]{13: STI}         # store 0 på index 3 (i = 0)
+[ 4 -999 4 0 0 ]{14: INCSP -1}      # skrumper stacken med 1 (fjern øverste 0)
+[ 4 -999 4 0 ]{16: GOTO 43}         # gå til while-loopet
+[ 4 -999 4 0 ]{43: GETBP}           # find base pointer (index 2)
+[ 4 -999 4 0 2 ]{44: CSTI 1}        # tilføj 1 til stacken
+[ 4 -999 4 0 2 1 ]{46: ADD}         # plus øverste elementer (for at finde ud af, hvad i's adresse er)
+[ 4 -999 4 0 3 ]{47: LDI}           # load hvadend, der står på index 3 (i)
+[4 -999 4 0 0 ]{48: GETBP}          # find base pointer
+[ 4 -999 4 0 0 2 ]{49: CSTI 0}      # tilføj 0 til stacken
+[ 4 -999 4 0 0 2 0 ]{51: ADD}       # plus 2 øverste elementer
+[ 4 -999 4 0 0 2 ]{52: LDI}         # load hvadend, der står på index 2 (n)
+[4 -999 4 0 0 4 ]{53: LT}           # tjek om index 3 eller mindre end index 2 (i < n)
+[ 4 -999 4 0 1 ]{54: IFNZRO 18}     # hvis i ikke er mindre end n gå til 18 (i er  mindre end n her)
+[ 4 -999 4 0 ]{18: GETBP}           # find base pointer
+[ 4 -999 4 0 2 ]{19: CSTI 1}        # tilføj 1 til stacken
+[ 4 -999 4 0 2 1 ]{21: ADD}         # plus 2 øverste elementer
+[ 4 -999 4 0 3 ]{22: LDI}           # load hvadend, der står på index 3 (i)
+[ 4 -999 4 0 0 ]{23: PRINTI}        # print det, der står på index 3 (i = 0)
+0 [ 4 -999 4 0 0 ]{24: INCSP -1}    # skrump stack pointer med 1
+[ 4 -999 4 0 ]{26: GETBP}           # find base pointer
+[ 4 -999 4 0 2 ]{27: CSTI 1}        # tilføj 1 til stacken
+[ 4 -999 4 0 2 1 ]{29: ADD}         # plus 2 øverste elementer
+[ 4 -999 4 0 3 ]{30: GETBP}         # find base pointer
+[ 4 -999 4 0 3 2 ]{31: CSTI 1}      # tilføj 1 til stacken
+[ 4 -999 4 0 3 2 1 ]{33: ADD}       # plus 2 øverste elementer
+[ 4 -999 4 0 3 3 ]{34: LDI}         # load index 3 (i = 0)
+[ 4 -999 4 0 3 0 ]{35: CSTI 1}      # tilføj 1 til stacken
+[ 4 -999 4 0 3 0 1 ]{37: ADD}       # plus 2 øverste elementer (værdi på index 3 (i = 0) + 1)
+[ 4 -999 4 0 3 1 ]{38: STI}         # store det vi finder lige oppe over på index 3 (i), så vi har linje 8 (i = i + 1)
+[ 4 -999 4 1 1 ]{39: INCSP -1}      # skrump stack pointer med 1 (fjern det vi lige har storet fra stacken)
 [ 4 -999 4 1 ]{41: INCSP 0}
-[ 4 -999 4 1 ]{43: GETBP}
+[ 4 -999 4 1 ]{43: GETBP}           # herfra gør vi det samme igen, hvor vi nu er ved starten af while-loopet og loader først i, så n og tjekker om i < n for derefter at printe i og øge i med 1 indtil at i < n :)
 [ 4 -999 4 1 2 ]{44: CSTI 1}
 [ 4 -999 4 1 2 1 ]{46: ADD}
 [ 4 -999 4 1 3 ]{47: LDI}
@@ -331,13 +331,13 @@ $ java Machinetrace ex3.out 4
 Ran 0.18 seconds
 ```
 
-```
-$ java Machine ex5.out 4 
-16 4 
+```zsh
+$ java Machine ex5.out 4
+16 4
 Ran 0.019 seconds
 ```
 
-```
+```zsh
 $ java Machinetrace ex5.out 4
 [ ]{0: LDARGS}
 [ 4 ]{1: CALL 1 5}
@@ -399,7 +399,6 @@ Ran 0.14 seconds
 ```
 
 Vi skal lige se lidt mere på den her opgave...
-
 
 ## Exercise 8.3
 
