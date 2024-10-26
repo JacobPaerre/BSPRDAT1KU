@@ -462,6 +462,20 @@ Label "L3";
 ]
 ```
 
+`prog1` contains `0 20000000 16 7 0 1 2 9 18 4 25` which translates to the symbolic bytecode:
+
+```bash
+CSTI 20000000
+GOTO 7
+CSTI 1         # 4
+SUB
+DUP            # 7
+IFNZRO 4
+STOP
+```
+
+`prog1` is much much faster because it does both the conditional and subtraction directly on the stack without storing and loading the value multiples times of i for every iteration.
+
 ```bash 
 > compileToFile (fromFile "ex13.c") "ex13.out";;
 val it: Machine.instr list =
@@ -531,6 +545,11 @@ Label "L3";
     RET 0
 ]
 ```
+
+The combination of the loop and the conditionals result in a very complicated compilation with a bunch of labels.
+`L3` represents the conditional of the while-loop. 
+`L6` represents the body of the if-statement which the code is directed to with a different value 1 or 0 on top of the stack depending on the result of the preceding conditional. 
+Labels are created for every branch of the combined conditional in the if-statement despite the different cases resulting in the same destination in the code.
 
 
 ## Exercise 8.5
