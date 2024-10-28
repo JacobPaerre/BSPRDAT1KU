@@ -57,6 +57,9 @@ rule Token = parse
   (* Exercise 7.5 *)
   | "++"            { PREINC }
   | "--"            { PREDEC } 
+  (* Exercise 8.5 *)
+  | '?'             { QUESTION }
+  | ':'             { COLON }
   | '*'             { TIMES } 
   | '/'             { DIV } 
   | '%'             { MOD }                     

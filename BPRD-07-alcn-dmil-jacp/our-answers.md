@@ -546,12 +546,15 @@ Label "L3";
 ]
 ```
 
-The combination of the loop and the conditionals result in a very complicated compilation with a bunch of labels.
-`L3` represents the conditional of the while-loop. 
-`L6` represents the body of the if-statement which the code is directed to with a different value 1 or 0 on top of the stack depending on the result of the preceding conditional. 
+The combination of the loop and the conditionals result in a very complicated compilation with a bunch of labels.\
+`L3` represents the conditional of the while-loop.\
+`L6` represents the body of the if-statement which the code is directed to with a different value 1 or 0 on top of the stack depending on the result of the preceding conditional.\
 Labels are created for every branch of the combined conditional in the if-statement despite the different cases resulting in the same destination in the code.
 
 
 ## Exercise 8.5
+
+Code changes in `CLex.fsl`, `CPar.fsy`, `Absyn.fs` and `Comp.fs` marked with "Exercise 8.5".\
+Example MicroC functions can be found in `ex8_5i.c` and `ex8_5ii.c`
 
 ## Exercise 8.6
