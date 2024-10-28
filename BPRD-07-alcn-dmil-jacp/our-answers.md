@@ -558,3 +558,6 @@ Code changes in `CLex.fsl`, `CPar.fsy`, `Absyn.fs` and `Comp.fs` marked with "Ex
 Example MicroC functions can be found in `ex8_5i.c` and `ex8_5ii.c`
 
 ## Exercise 8.6
+
+Code changes in `CLex.fsl`, `CPar.fsy`, `Absyn.fs` and `Comp.fs` marked with "Exercise 8.6".\
+Example MicroC functions can be found in `ex8_6.c`.

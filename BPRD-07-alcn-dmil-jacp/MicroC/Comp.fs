@@ -143,6 +143,15 @@ let rec cStmt stmt (varEnv : varEnv) (funEnv : funEnv) : instr list =
       [RET (snd varEnv - 1)]
     | Return (Some e) -> 
       cExpr e varEnv funEnv @ [RET (snd varEnv)]
+    (* Exercise 8.6 *)
+    | Switch(e, cases) ->
+      let endLabel = newLabel()
+      let caseLabels = List.map (fun _ -> newLabel()) cases.Tail @ [endLabel]
+      let caseCode =
+        List.map2 (fun (Case(v, s)) lbl ->
+          [DUP; CSTI v; EQ; IFZERO lbl] @ cStmt s varEnv funEnv @ [GOTO endLabel] @ [Label lbl]
+        ) cases caseLabels
+      cExpr e varEnv funEnv @ List.concat caseCode @ [INCSP -1]
 
 and cStmtOrDec stmtOrDec (varEnv : varEnv) (funEnv : funEnv) : varEnv * instr list = 
     match stmtOrDec with 

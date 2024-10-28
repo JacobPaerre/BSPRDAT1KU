@@ -28,6 +28,9 @@ let keyword s =
     | "true"    -> CSTBOOL 1
     | "void"    -> VOID 
     | "while"   -> WHILE
+    (* Exercise 8.6 *)
+    | "switch"  -> SWITCH
+    | "case"    -> CASE
     (* Exercise 7.3 *)
     | "for"     -> FOR         
     | _         -> NAME s
