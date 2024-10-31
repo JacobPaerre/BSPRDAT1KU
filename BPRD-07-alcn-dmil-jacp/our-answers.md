@@ -548,8 +548,9 @@ Label "L3";
 
 The combination of the loop and the conditionals result in a very complicated compilation with a bunch of labels.\
 `L3` represents the conditional of the while-loop.\
+`L2` represents the large conditional inside the while loop.\
 `L6` represents the body of the if-statement which the code is directed to with a different value 1 or 0 on top of the stack depending on the result of the preceding conditional.\
-Labels are created for every branch of the combined conditional in the if-statement despite the different cases resulting in the same destination in the code.
+All the other labels are created for every branch of the combined conditional in the if-statement despite the different cases resulting in the same destination in the code.
 
 
 ## Exercise 8.5
