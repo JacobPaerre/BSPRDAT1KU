@@ -101,6 +101,8 @@ class SentinelLockQueue implements Queue {
       return -999;
     Node first = head;
     head = first.next;
+    // Exercise 9.3
+    first.next = null; // remove the reference from the dead object to allow garbage collection
     return head.item;
   }
 }
